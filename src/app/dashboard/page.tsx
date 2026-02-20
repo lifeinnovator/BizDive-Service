@@ -59,8 +59,9 @@ export default async function DashboardPage() {
                             비즈니스 성장의 여정, <br className="hidden sm:block" />
                             <span className="text-purple-200">데이터로 시작하세요.</span>
                         </h2>
-                        <p className="text-lg text-indigo-100 max-w-2xl mb-10 leading-relaxed word-keep-all">
-                            7가지 핵심 차원을 통해 기업의 현재 상태를 입체적으로 분석하고, 다음 단계로 나아가기 위한 구체적인 전략을 발견할 수 있습니다.
+                        <p className="text-lg text-indigo-100 max-w-2xl mb-10 leading-relaxed word-keep-all break-keep">
+                            7가지 핵심 차원을 통해 기업의 현재 상태를 입체적으로 분석하고, <br className="hidden sm:block" />
+                            다음 단계로 나아가기 위한 구체적인 전략을 발견할 수 있습니다.
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <Link href="/diagnosis">
