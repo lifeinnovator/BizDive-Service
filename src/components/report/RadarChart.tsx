@@ -57,10 +57,9 @@ export default function DiagnosisRadarChart({ sectionScores, previousScores }: R
                         <Radar
                             name="이전 진단"
                             dataKey="B"
-                            stroke="#94a3b8"
+                            stroke="#64748b"
                             fill="#94a3b8"
-                            fillOpacity={0.1}
-                            strokeDasharray="4 4"
+                            fillOpacity={0.3}
                         />
                     )}
 

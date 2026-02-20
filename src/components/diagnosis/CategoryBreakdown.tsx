@@ -35,7 +35,7 @@ const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({ sectionScores, ea
     }
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-4">
             {SECTIONS.map((sec) => {
                 const sScore = sectionScores[sec.id] || 0; // % used for color logic
                 const earned = earnedScores[sec.id] || 0;
@@ -49,42 +49,45 @@ const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({ sectionScores, ea
 
                 // Thresholds based on percentage (0-100)
                 if (sScore <= 33) {
-                    zoneClass = 'zone-red';
+                    zoneClass = 'bg-rose-50 border-rose-100 text-rose-700';
                     barColor = 'bg-rose-500';
                     Icon = AlertTriangle;
                     msg = FEEDBACK_DB[sec.id]?.low || "분석 중...";
                 } else if (sScore <= 66) {
-                    zoneClass = 'zone-yellow';
+                    zoneClass = 'bg-amber-50 border-amber-100 text-amber-700';
                     barColor = 'bg-amber-500';
                     Icon = Wrench;
                     msg = FEEDBACK_DB[sec.id]?.mid || "분석 중...";
                 } else {
-                    zoneClass = 'zone-green';
+                    zoneClass = 'bg-emerald-50 border-emerald-100 text-emerald-700';
                     barColor = 'bg-emerald-500';
                     Icon = Crown;
                     msg = FEEDBACK_DB[sec.id]?.high || "분석 중...";
                 }
 
                 return (
-                    <div key={sec.id} className="animate-fade-in">
-                        <div className="flex justify-between text-xs mb-1.5">
-                            <span className="font-bold text-foreground">
+                    <div key={sec.id} className="animate-fade-in group">
+                        <div className="flex items-center justify-between mb-1">
+                            <h4 className="font-bold text-sm text-gray-800">
                                 {sec.title.split('(')[0]}
-                            </span>
-                            <span className="font-bold text-muted-foreground">
-                                {earned.toFixed(1)}{' '}
-                                <span className="text-muted-foreground/50 font-normal">/ {max}</span>
+                            </h4>
+                            <span className="font-bold text-sm text-gray-600">
+                                {earned.toFixed(1)} <span className="text-gray-400 font-normal text-xs">/ {max}</span>
                             </span>
                         </div>
-                        <div className="w-full bg-muted rounded-full h-1.5 mb-2 overflow-hidden">
+
+                        {/* Progress Bar - Thinner */}
+                        <div className="w-full bg-gray-100 rounded-full h-1.5 mb-2 overflow-hidden">
                             <div
                                 className={cn(barColor, "h-1.5 rounded-full transition-all duration-500")}
                                 style={{ width: `${percent}%` }}
                             />
                         </div>
-                        <div className={cn("rounded-lg p-3 text-xs leading-relaxed flex gap-2", zoneClass)}>
-                            <Icon className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                            <span>{msg}</span>
+
+                        {/* Feedback Box - Compact & One-line optimized */}
+                        <div className={cn("rounded-md px-3 py-2 text-xs font-medium flex items-start gap-2 border", zoneClass)}>
+                            <Icon className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 opacity-70" />
+                            <span className="break-keep leading-relaxed">{msg}</span>
                         </div>
                     </div>
                 );
