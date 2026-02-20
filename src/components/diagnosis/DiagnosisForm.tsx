@@ -211,7 +211,7 @@ export default function DiagnosisForm({ questions, userId, profile, isGuest = fa
                     total_score: totalScore,
                     dimension_scores: sectionScores,
                     stage_result: stageResult,
-                    stage_result: stageResult
+
                 })
                 .select('id')
                 .single()
